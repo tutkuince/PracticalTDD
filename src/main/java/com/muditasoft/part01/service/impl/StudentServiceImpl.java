@@ -1,21 +1,15 @@
 package com.muditasoft.part01.service.impl;
 
+import com.muditasoft.part01.model.*;
+import com.muditasoft.part01.service.CourseService;
+import com.muditasoft.part01.service.LecturerService;
+import com.muditasoft.part01.service.StudentService;
+import com.muditasoft.part01.service.TranscriptItem;
+
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
-import org.junit.junittutorial._02elementary._04example.model.Course;
-import org.junit.junittutorial._02elementary._04example.model.Lecturer;
-import org.junit.junittutorial._02elementary._04example.model.LecturerCourseRecord;
-import org.junit.junittutorial._02elementary._04example.model.Semester;
-import org.junit.junittutorial._02elementary._04example.model.Student;
-import org.junit.junittutorial._02elementary._04example.model.StudentCourseRecord;
-import org.junit.junittutorial._02elementary._04example.model.StudentRepository;
-import org.junit.junittutorial._02elementary._04example.service.CourseService;
-import org.junit.junittutorial._02elementary._04example.service.LecturerService;
-import org.junit.junittutorial._02elementary._04example.service.StudentService;
-import org.junit.junittutorial._02elementary._04example.service.TranscriptItem;
 
 /**
  * @author Tutku Ince
@@ -65,8 +59,9 @@ public class StudentServiceImpl implements StudentService {
 	}
 
 	private Student student(String studentId) {
-		return studentRepository.findById(studentId).orElseThrow(
-				() -> new IllegalArgumentException(String.format("Can't find a student with id<%s>", studentId)));
+		return studentRepository.findById(studentId).orElseThrow(() -> new IllegalArgumentException(String.format("Cannot find a student with id<%s>", studentId)));
+//		return studentRepository.findById(studentId).orElseThrow(
+//				() -> new IllegalArgumentException(String.format("Can't find a student with id<%s>", studentId)));
 	}
 
 	@Override

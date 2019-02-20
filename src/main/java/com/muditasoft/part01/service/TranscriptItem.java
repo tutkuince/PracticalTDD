@@ -1,8 +1,9 @@
 package com.muditasoft.part01.service;
 
-import org.junit.junittutorial._02elementary._04example.model.Course;
-import org.junit.junittutorial._02elementary._04example.model.Semester;
-import org.junit.junittutorial._02elementary._04example.model.StudentCourseRecord;
+
+import com.muditasoft.part01.model.Course;
+import com.muditasoft.part01.model.Semester;
+import com.muditasoft.part01.model.StudentCourseRecord;
 
 /**
  * @author Tutku Ince

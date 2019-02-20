@@ -1,13 +1,14 @@
 package com.muditasoft.part01.service;
 
+import com.muditasoft.part01.model.Course;
+import com.muditasoft.part01.model.Semester;
+import com.muditasoft.part01.model.Student;
+import com.muditasoft.part01.model.StudentCourseRecord;
+
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
-import org.junit.junittutorial._02elementary._04example.model.Course;
-import org.junit.junittutorial._02elementary._04example.model.Semester;
-import org.junit.junittutorial._02elementary._04example.model.Student;
-import org.junit.junittutorial._02elementary._04example.model.StudentCourseRecord;
 
 /**
  * @author Tutku Ince

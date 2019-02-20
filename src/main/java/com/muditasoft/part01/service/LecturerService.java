@@ -1,10 +1,11 @@
 package com.muditasoft.part01.service;
 
-import java.util.Optional;
 
-import org.junit.junittutorial._02elementary._04example.model.Course;
-import org.junit.junittutorial._02elementary._04example.model.Lecturer;
-import org.junit.junittutorial._02elementary._04example.model.Semester;
+import com.muditasoft.part01.model.Course;
+import com.muditasoft.part01.model.Lecturer;
+import com.muditasoft.part01.model.Semester;
+
+import java.util.Optional;
 
 /**
  * @author Tutku Ince
