@@ -12,7 +12,7 @@ public class StudentTestWithTestLifecycle {
     private Student stdTutku = new Student("id1", "Tutku", "Ince");
 
     @BeforeAll  // Must be static when @TestInstance(TestInstance.Lifecycle.PER_CLASS) not used.
-    void setUp() {
+    static void setUp() {
 
     }
 
