@@ -1,5 +1,6 @@
 package com.muditasoft.part02;
 
+import com.muditasoft.part01.model.Course;
 import com.muditasoft.part01.model.LecturerCourseRecord;
 import com.muditasoft.part01.model.StudentCourseRecord;
 
@@ -47,6 +48,15 @@ public class Student {
         this.birthDate = birthDate;
     }
 
+
+    public Set<StudentCourseRecord> getStudentCourseRecords() {
+        return studentCourseRecords;
+    }
+
+    public void setStudentCourseRecords(Set<StudentCourseRecord> studentCourseRecords) {
+        this.studentCourseRecords = studentCourseRecords;
+    }
+
     public void addCourse(LecturerCourseRecord lecturerCourseRecord) {
 
         if (lecturerCourseRecord == null) {
@@ -57,12 +67,9 @@ public class Student {
         studentCourseRecords.add(studentCourseRecord);
     }
 
-    public Set<StudentCourseRecord> getStudentCourseRecords() {
-        return studentCourseRecords;
-    }
-
-    public void setStudentCourseRecords(Set<StudentCourseRecord> studentCourseRecords) {
-        this.studentCourseRecords = studentCourseRecords;
+    public boolean isTakeCourse(Course course) {
+        return studentCourseRecords.stream().map(StudentCourseRecord::getLecturerCourseRecord)
+                .map(LecturerCourseRecord::getCourse).anyMatch(course1 -> course1.equals(course));
     }
 
     @Override
