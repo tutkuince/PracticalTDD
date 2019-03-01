@@ -2,6 +2,7 @@ package com.muditasoft.part03;
 
 import org.junit.jupiter.api.*;
 //import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.RegisterExtension;
 
 import java.util.stream.Stream;
@@ -9,7 +10,8 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.*;
 
 @Tag("student")
-//@ExtendWith(TestLoggerExtension.class)
+//@ExtendWith
+@ExtendWith(CreateStudentConditionExtension.class)
 public class StudentWithNestedTest {
 
     @RegisterExtension
