@@ -2,6 +2,7 @@ package com.muditasoft.part04;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ValidateISBNTest {
@@ -13,5 +14,10 @@ public class ValidateISBNTest {
         assertTrue(result);
     }
 
-
+    @Test
+    void checkAnInvalidISBN() {
+        ValidateISBN validateISBN = new ValidateISBN();
+        boolean result = validateISBN.checkISBN("0140449117");
+        assertFalse(result);
+    }
 }
