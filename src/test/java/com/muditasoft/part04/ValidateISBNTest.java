@@ -2,8 +2,7 @@ package com.muditasoft.part04;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class ValidateISBNTest {
 
@@ -21,5 +20,11 @@ class ValidateISBNTest {
         ValidateISBN validateISBN = new ValidateISBN();
         boolean result = validateISBN.checkISBN("0140449117");
         assertFalse(result);
+    }
+
+    @Test
+    void nineDigitISBNsAreNotAllowed() {
+        ValidateISBN validateISBN = new ValidateISBN();
+        assertThrows(NumberFormatException.class, () -> validateISBN.checkISBN("140449116"), "Nine digit is not allowed!");
     }
 }
