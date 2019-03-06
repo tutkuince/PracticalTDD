@@ -2,12 +2,15 @@ package com.muditasoft.part04;
 
 public class ValidateISBN {
 
+    private static final int LONG_ISBN_LENGTH = 13;
+    private static final int SHORT_ISBN_LENGTH = 10;
+
     public boolean checkISBN(String isbn) {
 
-        if (isbn.length() == 13) {
+        if (isbn.length() == LONG_ISBN_LENGTH) {
             return isThisAValid13DigitISBN(isbn);
         } else {
-            if (isbn.length() != 10)
+            if (isbn.length() != SHORT_ISBN_LENGTH)
                 throw new NumberFormatException("ISBN numbers must be 10 digits long");
 
             return isThisAValid10DigitISBN(isbn);
