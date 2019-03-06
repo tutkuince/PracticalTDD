@@ -16,12 +16,9 @@ class ValidateISBNTest {
 
     @Test
     void checkAValid10DigitISBN() {
-
-        boolean result = validateISBN.checkISBN("0140449116");
-        assertTrue(result, "First Value");
-
-        result = validateISBN.checkISBN("0140449116");
-        assertTrue(result, "Second Value");
+        assertAll("Check Valid 10 Digit ISBN",
+                () -> assertTrue(validateISBN.checkISBN("0140449116")),
+                () -> assertTrue(validateISBN.checkISBN("1617294942")));
     }
 
     @Test
