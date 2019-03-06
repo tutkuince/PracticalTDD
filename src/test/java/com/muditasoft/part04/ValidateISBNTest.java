@@ -25,6 +25,6 @@ class ValidateISBNTest {
     @Test
     void nineDigitISBNsAreNotAllowed() {
         ValidateISBN validateISBN = new ValidateISBN();
-        assertThrows(NumberFormatException.class, () -> validateISBN.checkISBN("140449116"), "Nine digit is not allowed!");
+        assertThrows(NumberFormatException.class, () -> validateISBN.checkISBN("140449116"));
     }
 }
