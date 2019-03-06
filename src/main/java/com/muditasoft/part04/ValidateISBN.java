@@ -21,14 +21,14 @@ public class ValidateISBN {
     private boolean isThisAValid10DigitISBN(String isbn) {
         int total = 0;
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < SHORT_ISBN_LENGTH; i++) {
             if (!Character.isDigit(isbn.charAt(i))) {
-                if (i == 9 && isbn.charAt(i) == 'X')
+                if (i == SHORT_ISBN_LENGTH - 1 && isbn.charAt(i) == 'X')
                     total += 10;    // X is 10
                 else
                     throw new NumberFormatException("ISBN numbers can only contain numeric digits");
             } else
-                total += Character.getNumericValue(isbn.charAt(i)) * (10 - i);
+                total += Character.getNumericValue(isbn.charAt(i)) * (SHORT_ISBN_LENGTH - i);
         }
 
         return total % 11 == 0;
@@ -37,7 +37,7 @@ public class ValidateISBN {
     private boolean isThisAValid13DigitISBN(String isbn) {
         int total = 0;
 
-        for (int i = 0; i < 13; i++) {
+        for (int i = 0; i < LONG_ISBN_LENGTH; i++) {
             if (i % 2 == 0) {
                 total += Character.getNumericValue(isbn.charAt(i));
             } else {
