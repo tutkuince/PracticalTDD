@@ -4,6 +4,8 @@ public class ValidateISBN {
 
     private static final int LONG_ISBN_LENGTH = 13;
     private static final int SHORT_ISBN_LENGTH = 10;
+    private static final int SHORT_ISBN_MULTIPLIER = 11;
+    private static final int LONG_ISBN_MULTIPLIER = 10;
 
     public boolean checkISBN(String isbn) {
 
@@ -31,7 +33,7 @@ public class ValidateISBN {
                 total += Character.getNumericValue(isbn.charAt(i)) * (SHORT_ISBN_LENGTH - i);
         }
 
-        return total % 11 == 0;
+        return total % SHORT_ISBN_MULTIPLIER == 0;
     }
 
     private boolean isThisAValid13DigitISBN(String isbn) {
@@ -44,6 +46,6 @@ public class ValidateISBN {
                 total += Character.getNumericValue(isbn.charAt(i)) * 3;
             }
         }
-        return total % 10 == 0;
+        return total % LONG_ISBN_MULTIPLIER == 0;
     }
 }
