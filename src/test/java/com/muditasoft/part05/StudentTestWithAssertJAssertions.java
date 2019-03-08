@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.groups.Tuple.tuple;
 
 public class StudentTestWithAssertJAssertions {
@@ -133,5 +133,43 @@ public class StudentTestWithAssertJAssertions {
         StudentAssert.assertThat(stdUtku).as("Student Utku info check")
                 .hasName("Utku");
 
+    }
+
+    @Test
+    void addCourseToStudentWithExceptionalScenarios() {
+        final Student student = new Student("id1", "Tutku", "Ince");
+
+        assertThatThrownBy(() -> student.addCourse(null))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("Can't add course")
+                .hasStackTraceContaining("Student")
+        ;
+
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> student.addCourse(null))
+                .withMessageContaining("Can't add course")
+                .withNoCause()
+        ;
+
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> student.addCourse(null))
+                .withMessageContaining("Can't add course")
+                .withNoCause()
+        ;
+
+        assertThatCode(() -> student.addCourse(null))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("Can't add course")
+        ;
+
+        assertThatCode(() -> student.addCourse(new LecturerCourseRecord(new Course("101"), new Semester())))
+                .doesNotThrowAnyException();
+
+
+        final Throwable throwable = catchThrowable(() -> student.addCourse(null));
+        assertThat(throwable)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("Can't add course")
+        ;
     }
 }
