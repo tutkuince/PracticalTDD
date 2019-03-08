@@ -7,7 +7,7 @@ import java.util.Objects;
 public class StudentAssert extends AbstractAssert<StudentAssert, Student> {
 
     public StudentAssert(Student student) {
-        super(student, Student.class);
+        super(student, StudentAssert.class);
     }
 
     public static StudentAssert assertThat(Student actual) {
@@ -16,7 +16,7 @@ public class StudentAssert extends AbstractAssert<StudentAssert, Student> {
 
     public StudentAssert hasName(String name) {
         isNotNull();
-        if (Objects.equals(name, actual.getName())) {
+        if (!Objects.equals(name, actual.getName())) {
             failWithMessage("Expected student's name %s but was found %s", name, actual.getName());
         }
         return this;
