@@ -130,5 +130,8 @@ public class StudentTestWithAssertJAssertions {
                 .extracting(Student::getName, Student::getSurname)
                 .containsOnly("Tutku", "Ince");
 
+        StudentAssert.assertThat(stdUtku).as("Student Utku info check")
+                .hasName("Utku");
+
     }
 }
