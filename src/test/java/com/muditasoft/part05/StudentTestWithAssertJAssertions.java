@@ -1,11 +1,15 @@
 package com.muditasoft.part05;
 
+import com.muditasoft.part01.model.Course;
+import com.muditasoft.part01.model.LecturerCourseRecord;
+import com.muditasoft.part01.model.Semester;
 import org.assertj.core.api.Condition;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.groups.Tuple.tuple;
 
 public class StudentTestWithAssertJAssertions {
 
@@ -64,5 +68,41 @@ public class StudentTestWithAssertJAssertions {
                 })
                 .hasSize(2)
                 .containsOnly(stdAlper, stdAral);
+
+        assertThat(students)
+                .extracting(Student::getName) // like stream.map
+                .filteredOn(name -> name.contains("u"))
+                .hasSize(2)
+                .containsOnly("Tutku", "Ugur");
+
+
+        assertThat(students)
+                .filteredOn(student -> student.getName().contains("u"))
+                .extracting(Student::getName, Student::getSurname)  // used tuple for mapping more than 1 props
+                .containsOnly(
+                        tuple("Tutku", "Ince"),
+                        tuple("Ugur", "Batikan")
+                );
+
+
+        final LecturerCourseRecord lecturerCourseRecord101 = new LecturerCourseRecord(new Course("101"), new Semester());
+        final LecturerCourseRecord lecturerCourseRecord103 = new LecturerCourseRecord(new Course("103"), new Semester());
+        final LecturerCourseRecord lecturerCourseRecord105 = new LecturerCourseRecord(new Course("105"), new Semester());
+
+        stdTutku.addCourse(lecturerCourseRecord101);
+        stdTutku.addCourse(lecturerCourseRecord103);
+        stdTutku.addCourse(lecturerCourseRecord105);
+
+        stdEmin.addCourse(lecturerCourseRecord101);
+        stdEmin.addCourse(lecturerCourseRecord105);
+
+
+        assertThat(students)
+                .filteredOn(student -> student.getName().equals("Tutku") || student.getName().equals("Emin"))
+                .flatExtracting(Student::getStudentCourseRecords)
+                .hasSize(5)
+                .filteredOn(studentCourseRecord -> studentCourseRecord.getLecturerCourseRecord().getCourse().getCode().equals("101"))
+                .hasSize(2);
+
     }
 }
