@@ -1,11 +1,13 @@
 package com.muditasoft.part05;
 
 import com.muditasoft.part01.model.Course;
+import com.muditasoft.part01.model.Department;
 import com.muditasoft.part01.model.LecturerCourseRecord;
 import com.muditasoft.part01.model.Semester;
 import org.assertj.core.api.Condition;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -103,6 +105,30 @@ public class StudentTestWithAssertJAssertions {
                 .hasSize(5)
                 .filteredOn(studentCourseRecord -> studentCourseRecord.getLecturerCourseRecord().getCourse().getCode().equals("101"))
                 .hasSize(2);
+
+    }
+
+    @Test
+    void anotherCreateStudentTest() {
+        Department department = new Department();
+        final Student stdTutku = new Student("id1", "Tutku", "Ince", LocalDate.of(1989, 1, 15));
+        stdTutku.setDepartment(department);
+        final Student stdUtku = new Student("id1", "Utku", "Ince", LocalDate.of(1998, 3, 20));
+        stdUtku.setDepartment(department);
+
+        assertThat(stdTutku).as("Check student tutku info")
+                .isNotNull()
+                .hasSameClassAs(stdUtku)
+                .isExactlyInstanceOf(Student.class) // must construct with Student
+                .isInstanceOf(Object.class)    // can be super class
+                .isNotEqualTo(stdUtku)
+                .isEqualToComparingOnlyGivenFields(stdUtku, "surname")
+                .isEqualToIgnoringGivenFields(stdUtku, "id", "name", "birthDate")
+                .matches(student -> student.getSurname().equals(stdUtku.getSurname()))
+                .hasFieldOrProperty("name")    // contains field
+                .hasNoNullFieldsOrProperties()
+                .extracting(Student::getName, Student::getSurname)
+                .containsOnly("Tutku", "Ince");
 
     }
 }
